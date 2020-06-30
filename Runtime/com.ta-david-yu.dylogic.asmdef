@@ -1,6 +1,8 @@
 {
     "name": "com.ta-david-yu.dylogic",
-    "references": [],
+    "references": [
+        "GUID:7618a4f3d4fb7e244b1a2e07c86735c6"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
