@@ -1,0 +1,15 @@
+{
+    "name": "com.ta-david-yu.dylogic",
+    "displayName": "DY.Logic",
+    "version": "0.0.1",
+    "description": "Simple visual scripting tool: including Actions, Events, Variables and Conditions.",
+    "keywords": [],
+    "author": {
+        "name": "Ta David Yu",
+        "email": "d366095@gmail.com",
+        "url": "https://github.com/ta-david-yu"
+    }
+	"dependencies": {
+		"com.ta-david-yu.dyserializabletype": "https://github.com/ta-david-yu/Unity-SerializableType.git#upm"
+	}
+}
