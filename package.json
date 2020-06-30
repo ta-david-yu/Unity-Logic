@@ -10,6 +10,6 @@
         "url": "https://github.com/ta-david-yu"
     }
 	"dependencies": {
-		"com.ta-david-yu.dyserializabletype": "https://github.com/ta-david-yu/Unity-SerializableType.git#upm"
+		"com.ta-david-yu.dyserializer": "https://github.com/ta-david-yu/Unity-Serializer.git#upm"
 	}
 }
