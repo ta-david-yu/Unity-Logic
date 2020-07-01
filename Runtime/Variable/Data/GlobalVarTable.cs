@@ -4,10 +4,8 @@ using UnityEngine;
 
 namespace DYLogic
 {
-    /// <summary>
-    /// Local Variables stores a table of Variable (Var) in the Monobehaviour, therefore the lifetime of the table is the same as the gameobject that it's attached to
-    /// </summary>
-    public class LocalVarTable : MonoBehaviour, IVarTable, ISerializationCallbackReceiver
+    [CreateAssetMenu(fileName ="GlobalVarTable", menuName = "DYLogic/GlobalVarTable")]
+    public class GlobalVarTable : ScriptableObject, IVarTable, ISerializationCallbackReceiver
     {
         [SerializeField]
         private List<Var> m_Vars = new List<Var>();

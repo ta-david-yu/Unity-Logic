@@ -10,44 +10,71 @@ namespace DYLogic
     public interface IVarReference
     {
         IVar GetVar();
-        IVar SetVar(IValueType valueType);
+        void SetVar(IValueType data);
     }
 
     [System.Serializable]
-    public class LocalVarReference : IVarReference
+    public abstract class TableVarReferenceBase : IVarReference
     {
-        [SerializeField]
-        private LocalVarTable m_LocalTable;
+        public abstract IVarTable TargetTable { get; }
 
         [SerializeField]
-        private string m_TargetKey;
+        protected string m_TargetKey;
+
+        public IVar GetVar()
+        {
+            return TargetTable.GetVar(m_TargetKey);
+        }
+
+        public void SetVar(IValueType data)
+        {
+            TargetTable.SetVar(m_TargetKey, data);
+        }
+    }
+
+    [System.Serializable]
+    public class LocalVarReference : TableVarReferenceBase
+    {
+        [SerializeField]
+        private LocalVarTable m_TargetTable;
+
+        public override IVarTable TargetTable => m_TargetTable;
+    }
+
+    [System.Serializable]
+    public class GlobalVarReference : TableVarReferenceBase
+    {
+        [SerializeField]
+        private GlobalVarTable m_TargetTable;
+
+        public override IVarTable TargetTable => m_TargetTable;
+    }
+
+    // TODO
+    [System.Serializable]
+    public class GenericVarReference : IVarReference
+    {
+        public enum Scope
+        {
+            Local,
+            Global
+        }
+
+        [SerializeField]
+        private Scope m_TargetScope;
+
+        [SerializeField]
+        private LocalVarTable m_TargetLocalTable;
+
+        [SerializeField]
+        private GlobalVarTable m_TargetGlobalTable;
 
         public IVar GetVar()
         {
             throw new System.NotImplementedException();
         }
 
-        public IVar SetVar(IValueType valueType)
-        {
-            throw new System.NotImplementedException();
-        }
-    }
-
-    [System.Serializable]
-    public class GlobalVarReference : IVarReference
-    {
-        [SerializeField]
-        private LocalVarTable m_LocalTable;
-
-        [SerializeField]
-        private string m_TargetKey;
-
-        public IVar GetVar()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IVar SetVar(IValueType valueType)
+        public void SetVar(IValueType data)
         {
             throw new System.NotImplementedException();
         }

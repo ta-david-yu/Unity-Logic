@@ -19,7 +19,7 @@ namespace DYLogic
     {
         [SerializeField]
         private string m_Key = "Variable";
-        public string Key { get { return m_Key; } private set { m_Key = value; } }
+        public string Key { get { return m_Key; } set { m_Key = value; } }
 
         [SerializeReference]
         [DYSerializer.SerializeRefUI]
@@ -31,30 +31,34 @@ namespace DYLogic
             {
                 if (m_Data != value)
                 {
-                    OnDataValueChanged.Invoke(Data, value);
+                    Events.OnDataValueChanged.Invoke(Data, value);
                 }
                 m_Data = value;
             }
         }
 
-        private Var(string key, IValueType data)
+        [System.Serializable]
+        public struct VarEvents
         {
-            m_Key = key;
-            m_Data = data;
+            [System.Serializable]
+            public class DataValueChangedEvent : UnityEvent<IValueType, IValueType> { }
+            public DataValueChangedEvent OnDataValueChanged;
         }
+        public VarEvents Events;
 
-        public UnityEvent<IValueType, IValueType> OnDataValueChanged;
+
+        private Var() { }
 
         public class Factory
         {
             public static Var Create(string key, IValueType data)
             {
-                return new Var(key, data);
+                return new Var() { m_Key = key, m_Data = data };
             }
 
             public static Var Copy(Var variable)
             {
-                return new Var(variable.Key, variable.Data);
+                return new Var() { m_Key = variable.Key, m_Data = variable.Data, Events = variable.Events };
             }
         }
     }
