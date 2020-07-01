@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,6 +22,12 @@ namespace DYLogic
         public void SetVar(string key, IValueType data)
         {
             throw new System.NotImplementedException();
+        }
+
+        public void AddVar(string key, Type type)
+        {
+            m_Table.Add(key, Var.Factory.Create(key, Activator.CreateInstance(type) as IValueType));
+            //m_Vars.Add(Var.Factory.Create(key, Activator.CreateInstance(type) as IValueType));
         }
 
         public void OnBeforeSerialize()

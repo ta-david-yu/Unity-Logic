@@ -10,7 +10,7 @@ namespace DYLogic
         object Get();
     }
 
-    public interface ValueType<T> : IValueType
+    public interface IValueType<T> : IValueType
     {
         T Value
         {

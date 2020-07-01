@@ -29,8 +29,9 @@ namespace DYLogic
             get { return m_Data; }
             set
             {
-                if (m_Data != value)
+                if (m_Data.Get().Equals(value.Get()))
                 {
+                    Debug.Log(m_Data.Get() + ":" + value.Get());
                     Events.OnDataValueChanged.Invoke(Data, value);
                 }
                 m_Data = value;

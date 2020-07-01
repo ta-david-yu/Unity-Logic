@@ -6,7 +6,7 @@ using UnityEngine;
 namespace DYLogic
 {
     [System.Serializable]
-    public struct Integer : ValueType<int> //, IEquatable<Integer>, IComparable, IComparable<Integer>
+    public struct Integer : IValueType<int> //, IEquatable<Integer>, IComparable, IComparable<Integer>
     {
         [SerializeField]
         private int m_Value;

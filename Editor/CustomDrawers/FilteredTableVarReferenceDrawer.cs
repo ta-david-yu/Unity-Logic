@@ -6,7 +6,6 @@ using System.Linq;
 
 namespace DYLogic
 {
-    [CustomPropertyDrawer(typeof(TableVarReferenceBase), true)]
     [CustomPropertyDrawer(typeof(FilterVarTableTypeAttribute))]
     public class FilteredTableVarReferenceDrawer : TableVarReferenceDrawer
     {

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace DYLogic
 {
     [System.Serializable]
-    public struct Float : ValueType<float>
+    public struct Float : IValueType<float>
     {
         [SerializeField]
         private float m_Value;
@@ -22,6 +22,6 @@ namespace DYLogic
         }
 
         public static implicit operator float(Float flt) => flt.Value;
-        public static explicit operator Float(int flt) => new Float(flt);
+        public static explicit operator Float(float flt) => new Float(flt);
     }
 }
