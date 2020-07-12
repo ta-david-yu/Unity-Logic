@@ -13,8 +13,6 @@ namespace DYLogic
 
         public override void OnInspectorGUI()
         {
-            base.OnInspectorGUI();
-
             var varsProp = serializedObject.FindProperty("m_Variables");
 
             var varTable = target as IVarTable;
@@ -25,19 +23,49 @@ namespace DYLogic
                 !type.IsAbstract)
                 .OrderBy((type) => type.Name);
 
+            GenericMenu addVarMenu = new GenericMenu();
+
             foreach (var type in types)
             {
-                if (GUILayout.Button(type.Name))
+                addVarMenu.AddItem(new GUIContent(type.Name), false, addNewVar, type);
+            }
+
+            var bgCol = GUI.backgroundColor;
+
+            var boxStyle = new GUIStyle("HelpBox");
+            using (new GUILayout.VerticalScope(boxStyle))
+            {
+                var titleStyle = new GUIStyle("label");
+                titleStyle.alignment = TextAnchor.MiddleCenter;
+                GUILayout.Label("Actions", titleStyle);
+                using (new GUILayout.HorizontalScope())
                 {
-                    var newKeyName = type.Name + (vars.Count - 1).ToString();
+                    GUI.backgroundColor = Color.yellow;
+                    if (GUILayout.Button("Add"))
+                    {
+                        addVarMenu.ShowAsContext();
+                    }
 
-                    varTable.AddVar(newKeyName, type);
+                    GUI.backgroundColor = Color.red;
+                    if (GUILayout.Button("Move"))
+                    {
 
-                    varsProp.InsertArrayElementAtIndex(0);
-                    var elementProp = varsProp.GetArrayElementAtIndex(vars.Count - 1);
-                    elementProp.FindPropertyRelative("m_Key").stringValue = newKeyName;
+                    }
                 }
             }
+
+            GUI.backgroundColor = bgCol;
+
+            void addNewVar(object typeObj)
+            {
+                Type type = typeObj as Type;
+                var newKeyName = (vars.Count).ToString("00") + "-" + type.Name;
+
+                Undo.RecordObject(target, "Add new variable");
+                varTable.AddVar(newKeyName, type);
+            }
+
+            base.OnInspectorGUI();
         }
     }
 
