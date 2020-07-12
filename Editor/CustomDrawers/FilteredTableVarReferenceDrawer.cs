@@ -12,7 +12,7 @@ namespace DYLogic
         protected override IEnumerable<string> getListOfVarKeys(IVarTable table)
         {
             var filteredTypes = (attribute as FilterVarTableTypeAttribute).FilterTypes;
-            return table.Vars.Where((ivar) => filteredTypes.Contains(ivar.Data.GetType())).Select((ivar) => ivar.Key);
+            return table.Variables.Where((ivar) => filteredTypes.Contains(ivar.Data.GetType())).Select((ivar) => ivar.Key);
         }
     }
 }

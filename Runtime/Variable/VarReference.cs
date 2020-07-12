@@ -52,8 +52,12 @@ namespace DYLogic
 
     // TODO
     [System.Serializable]
-    public class GenericVarReference : IVarReference
+    public class GenericVarReference<T> where T : IValueType
     {
+        [SerializeField]
+        private IVarTable m_TargetTable;
+        //public override IVarTable TargetTable => m_TargetTable;
+
         public enum Scope
         {
             Local,
@@ -68,15 +72,5 @@ namespace DYLogic
 
         [SerializeField]
         private GlobalVarTable m_TargetGlobalTable;
-
-        public IVar GetVar()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void SetVar(IValueType data)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

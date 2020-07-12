@@ -11,7 +11,7 @@ namespace DYLogic
     {
         protected virtual IEnumerable<string> getListOfVarKeys(IVarTable table)
         {
-            return table.Vars.Select((ivar) => ivar.Key);
+            return table.Variables.Select((ivar) => ivar.Key);
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)

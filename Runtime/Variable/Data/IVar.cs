@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,7 +12,9 @@ namespace DYLogic
     public interface IVar
     {
         string Key { get; }
-        IValueType Data { get; set; }
+        IValueType Data { get; }
+
+        void SetData(IValueType value);
     }
 
     [System.Serializable]
@@ -27,15 +30,6 @@ namespace DYLogic
         public IValueType Data
         {
             get { return m_Data; }
-            set
-            {
-                if (m_Data.Get().Equals(value.Get()))
-                {
-                    Debug.Log(m_Data.Get() + ":" + value.Get());
-                    Events.OnDataValueChanged.Invoke(Data, value);
-                }
-                m_Data = value;
-            }
         }
 
         [System.Serializable]
@@ -47,8 +41,27 @@ namespace DYLogic
         }
         public VarEvents Events;
 
-
         private Var() { }
+
+        public void SetData(IValueType value)
+        {
+            // Do type checking
+            if (Data?.GetType() != value.GetType())
+            {
+                throw new ArgumentException(
+                    string.Format("Type mismatch when trying to assign '{0}' to Variable '{2}' of type '{1}'", 
+                    value.GetType().Name, 
+                    Data?.GetType().Name,
+                    Key)
+                    );
+            }
+
+            if (!m_Data.Get().Equals(value.Get()))
+            {
+                Events.OnDataValueChanged.Invoke(Data, value);
+            }
+            m_Data = value;
+        }
 
         public class Factory
         {

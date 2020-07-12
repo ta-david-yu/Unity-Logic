@@ -11,8 +11,8 @@ namespace DYLogic
     public class LocalVarTable : MonoBehaviour, IVarTable, ISerializationCallbackReceiver
     {
         [SerializeField]
-        private List<Var> m_Vars = new List<Var>();
-        public IEnumerable<IVar> Vars { get { return m_Vars; } }
+        private List<Var> m_Variables = new List<Var>();
+        public IEnumerable<IVar> Variables { get { return m_Variables; } }
 
         private Dictionary<string, Var> m_Table = new Dictionary<string, Var>();
 
@@ -23,7 +23,7 @@ namespace DYLogic
 
         public void SetVar(string key, IValueType data)
         {
-            m_Table[key].Data = data;
+            m_Table[key].SetData(data);
         }
 
         public void AddVar(string key, Type type)
@@ -34,20 +34,20 @@ namespace DYLogic
 
         public void OnBeforeSerialize()
         {
-            m_Vars.Clear();
+            m_Variables.Clear();
 
             foreach (var pair in m_Table)
             {
-                m_Vars.Add(pair.Value);
+                m_Variables.Add(pair.Value);
             }
         }
 
         public void OnAfterDeserialize()
         {
             m_Table = new Dictionary<string, Var>();
-            for (int i = 0; i < m_Vars.Count; i++)
+            for (int i = 0; i < m_Variables.Count; i++)
             {
-                var variable = m_Vars[i];
+                var variable = m_Variables[i];
                 if (m_Table.ContainsKey(variable.Key))
                 {
                     var newKey = variable.Key + i.ToString();

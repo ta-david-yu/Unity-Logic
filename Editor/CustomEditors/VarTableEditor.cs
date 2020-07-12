@@ -15,10 +15,10 @@ namespace DYLogic
         {
             base.OnInspectorGUI();
 
-            var varsProp = serializedObject.FindProperty("m_Vars");
+            var varsProp = serializedObject.FindProperty("m_Variables");
 
             var varTable = target as IVarTable;
-            var vars = new List<IVar>(varTable.Vars);
+            var vars = new List<IVar>(varTable.Variables);
 
             var types = TypeCache.GetTypesDerivedFrom(typeof(IValueType)).Where((type) =>
                 !type.IsSubclassOf(typeof(UnityEngine.Object)) &&
@@ -36,8 +36,6 @@ namespace DYLogic
                     varsProp.InsertArrayElementAtIndex(0);
                     var elementProp = varsProp.GetArrayElementAtIndex(vars.Count - 1);
                     elementProp.FindPropertyRelative("m_Key").stringValue = newKeyName;
-
-                    //varTable.AddNewVar(type.Name + list.Count, type);
                 }
             }
         }

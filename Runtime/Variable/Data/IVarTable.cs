@@ -7,7 +7,7 @@ namespace DYLogic
 {
     public interface IVarTable
     {
-        IEnumerable<IVar> Vars { get; }
+        IEnumerable<IVar> Variables { get; }
 
         Var GetVar(string key);
         void SetVar(string key, IValueType data);
