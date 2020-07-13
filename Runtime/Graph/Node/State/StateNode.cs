@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using XNode;
 
 namespace DYLogic.Node
 {
@@ -14,6 +15,14 @@ namespace DYLogic.Node
 
         [Output(typeConstraint = TypeConstraint.Inherited)] 
         public StateNode NextStateOnEnd;
+
+        public override object GetValue(NodePort port)
+        {
+            if (port.fieldName == nameof(NextStateOnEnd))
+                return NextStateOnEnd;
+            else
+                return null;
+        }
 
         public virtual IEnumerator EnterState(MonoBehaviour executor)
         {

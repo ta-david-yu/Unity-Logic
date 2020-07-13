@@ -8,7 +8,7 @@ namespace DYLogic.Node
     [CreateNodeMenu("DYLogic/State/Wait")]
     public class WaitNode : StateNode
     {
-        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.InheritedInverse)] 
+        [Input(connectionType = ConnectionType.Override)] 
         public Float WaitTime;
 
         protected override IEnumerator onStay(MonoBehaviour executor)
