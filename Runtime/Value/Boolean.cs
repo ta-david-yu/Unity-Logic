@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace DYLogic
 {
     [System.Serializable]
-    public struct Boolean : IValueType<bool>
+    public struct Boolean : IValueType<bool>, IComparable
     {
         [SerializeField]
         private bool m_Value;
@@ -19,6 +20,11 @@ namespace DYLogic
         public object Get()
         {
             return Value;
+        }
+
+        public int CompareTo(object obj)
+        {
+            return Comparer<bool>.Default.Compare(this, (bool)obj);
         }
 
         public static implicit operator bool(Boolean boolean) => boolean.Value;

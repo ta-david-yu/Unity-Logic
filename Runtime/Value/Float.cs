@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace DYLogic
 {
     [System.Serializable]
-    public struct Float : IValueType<float>
+    public struct Float : IValueType<float>, IComparable
     {
         [SerializeField]
         private float m_Value;
@@ -19,6 +20,11 @@ namespace DYLogic
         public object Get()
         {
             return Value;
+        }
+
+        public int CompareTo(object obj)
+        {
+            return Comparer<float>.Default.Compare(this, (float)obj);
         }
 
         public static implicit operator float(Float flt) => flt.Value;

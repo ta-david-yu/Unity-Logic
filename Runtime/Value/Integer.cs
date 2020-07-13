@@ -6,7 +6,7 @@ using UnityEngine;
 namespace DYLogic
 {
     [System.Serializable]
-    public struct Integer : IValueType<int> //, IEquatable<Integer>, IComparable, IComparable<Integer>
+    public struct Integer : IValueType<int>, IComparable //, IEquatable<Integer>, IComparable, IComparable<Integer>
     {
         [SerializeField]
         private int m_Value;
@@ -20,6 +20,11 @@ namespace DYLogic
         public object Get()
         {
             return Value;
+        }
+
+        public int CompareTo(object obj)
+        {
+            return Comparer<int>.Default.Compare(this, (int)obj);
         }
 
         public static implicit operator int(Integer integer) => integer.Value;
