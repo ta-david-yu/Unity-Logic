@@ -15,11 +15,20 @@ namespace DYLogic.Node
 
         public override void OnCreateConnection(NodePort from, NodePort to)
         {
-            // TODO: Check if Output and Input type are the same IValueType
             // From this.Output
             if (from.fieldName == nameof(Output))
             {
-                //from.Disconnect
+                // fromType ---> toType
+                var fromType = (from.GetOutputValue() as IValueType).Get().GetType();
+                var toType = (to.GetInputValue() as IValueType).Get().GetType();
+
+                bool isValidConnection = DYSerializer.ReflectionUtility.HasImplicitConversion(fromType, toType) || toType.IsAssignableFrom(fromType);
+
+                if (!isValidConnection)
+                {
+                    Debug.LogWarning("Error Connection");
+                    from.Disconnect(to);
+                }
             }
         }
     }
