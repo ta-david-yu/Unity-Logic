@@ -1,7 +1,9 @@
 {
     "name": "com.ta-david-yu.dylogic.Editor",
     "references": [
-        "GUID:be87f1cdb5339ba4e9b889105c723a95"
+        "GUID:be87f1cdb5339ba4e9b889105c723a95",
+        "GUID:002c1bbed08fa44d282ef34fd5edb138",
+        "GUID:b8e24fd1eb19b4226afebb2810e3c19b"
     ],
     "includePlatforms": [
         "Editor"

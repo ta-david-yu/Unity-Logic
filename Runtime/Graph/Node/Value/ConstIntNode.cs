@@ -5,7 +5,7 @@ using XNode;
 
 namespace DYLogic.Node
 {
-    [CreateNodeMenu("DYLogic/ValueNode/Int")]
+    [CreateNodeMenu("DYLogic/Value/Integer")]
     public class ConstIntNode : ValueNode<Integer>
     {
         public int Value;

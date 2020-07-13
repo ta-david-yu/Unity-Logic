@@ -5,7 +5,7 @@ using XNode;
 
 namespace DYLogic.Node
 {
-    [CreateNodeMenu("DYLogic/ValueNode/IntMultiply")]
+    [CreateNodeMenu("DYLogic/Value/IntMultiply")]
     public class IntMultiplyNode : ValueNode<Integer>
     {
         [Input] public Integer InputA;

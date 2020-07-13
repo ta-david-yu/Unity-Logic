@@ -5,18 +5,18 @@ using XNode;
 
 namespace DYLogic.Node
 {
-    [CreateNodeMenu("DYLogic/ValueNode/GetIntVar")]
+    [CreateNodeMenu("DYLogic/Value/Integer Variable")]
     public class GetIntVarNode : ValueNode<Integer>
     {
         [SerializeField]
         [DYLogic.FilterVarTableType(typeof(Integer))]
-        private DYLogic.LocalVarReference m_LocalVarRef;
+        private DYLogic.LocalVarReference m_Ref;
 
         public override object GetValue(NodePort port)
         {
-            if (port.fieldName == "Output")
+            if (port.fieldName == nameof(Output))
             {
-                return m_LocalVarRef.GetVar().Data;
+                return m_Ref.GetVar().Data;
             }
 
             return null;
