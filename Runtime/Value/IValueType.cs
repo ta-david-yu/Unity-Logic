@@ -18,4 +18,13 @@ namespace DYLogic
             set;
         }
     }
+
+    public class ValueTypeTest : DYLogic.IValueType
+    {
+        public object Get()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 }
