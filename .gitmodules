@@ -1,3 +1,6 @@
 [submodule "Submodules/DYSerializer"]
 	path = Submodules/DYSerializer
 	url = "https://github.com/ta-david-yu/Unity-Serializer.git#upm"
+[submodule "Submodules/xNode"]
+	path = Submodules/xNode
+	url = https://github.com/ta-david-yu/xNode.git
