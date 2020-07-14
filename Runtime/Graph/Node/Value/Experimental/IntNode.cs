@@ -5,8 +5,8 @@ using XNode;
 
 namespace DYLogic.Node
 {
-    [CreateNodeMenu("DYLogic/Value/Integer")]
-    public class ConstIntNode : ValueNode<Integer>
+    [CreateNodeMenu(k_CreateNodeMenuNameRoot + "Experimental/Int")]
+    public class IntNode : ValueNode<Integer>
     {
         public int Value;
 
@@ -14,7 +14,7 @@ namespace DYLogic.Node
         {
             if (port.fieldName == "Output")
             {
-                return Value;
+                return new Integer(Value);
             }
 
             return null;

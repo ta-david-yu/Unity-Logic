@@ -5,7 +5,7 @@ using XNode;
 
 namespace DYLogic.Node
 {
-    [CreateNodeMenu("DYLogic/Value/Integer Variable")]
+    [CreateNodeMenu(k_CreateNodeMenuNameRoot + "Experimental/Int Variable")]
     public class GetIntVarNode : ValueNode<Integer>
     {
         [SerializeField]

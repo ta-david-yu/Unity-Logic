@@ -6,6 +6,10 @@ using XNode;
 
 namespace DYLogic.Node
 {
+    /// <summary>
+    /// StateNode is the base class of a State representation in a StateMachine Graph
+    /// The spec is still a WIP, would be changed in the future
+    /// </summary>
     [NodeWidth(250)]
     [NodeTint("#ff5733")]
     public abstract class StateNode : XNode.Node

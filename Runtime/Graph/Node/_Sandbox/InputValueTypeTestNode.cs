@@ -12,7 +12,7 @@ namespace DYLogic
         [DYSerializer.SerializeRefUI]
         public IValueType Value;
         
-        [DYSerializer.OnSerializableTypeChanged(nameof(onSerializableTypeChanged))]
+        [DYSerializer.OnTypeChanged(nameof(onSerializableTypeChanged))]
         [DYSerializer.InterfaceImplementation(typeof(IValueType), AllowAbstract = true)]
         public DYSerializer.SerializableType Type;
 
